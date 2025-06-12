@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const router = express.Router();
-const users = await User.find().select('-password');
-
 
 router.get("/test-db", async (req, res) => {
   try {
@@ -11,6 +9,7 @@ router.get("/test-db", async (req, res) => {
       .collection("users")
       .find()
       .toArray();
+
     res.json({ success: true, data: users });
   } catch (error) {
     console.error("❌ Database Query Error:", error);
